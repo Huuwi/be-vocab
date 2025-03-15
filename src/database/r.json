@@ -1,0 +1,135 @@
+[
+    {
+        "name": "Understanding MP3",
+        "requirement": "Read the text about MP3 and decide if the following sentences are T (True), F (False) or N (Not given)",
+        "content": "The name comes from MPEG which stands for the Motion Picture Experts Group. MPEG develops standards for audio and video. MP3 is actually MPEG Audio Layer 3.\nMP3 competes with another audio file format called WAV. The key different is that MP3 files are much smaller than WAV files. An MP3 file can store a minute of sound per megabyte, while a WAV file needs 11 or 12 megabytes to hold the same amount. How does an MP3 achieve this compression? CDs and audio files don’t reproduce every sound of performance. Instead, they sample the performance and store a discrete code for each sampled note. A CD or WAV file may sample a song 44,000 times a second, creating a huge mass of information.\nBy stripping out sound most people can’t hear, MP3 significantly reduces the information stored. For example, most people can’t hear above a frequency of 16kHz, so it eliminates them from the mix. Similarly, it eliminates quiet sounds masked by noise the same frequency. The result is a file that sound very similar to a CD, but which is much smaller. An MP3 file can contain spoken word performances, such as video shows or audio books as well as music. It can provide information about itself in a coded block called a tag. The tag may include the performance’s name, a graphic such as an album cover, the songs’s lyrics, the musical genre, and a URL, for more details.",
+        "question": [
+            "WAV files are a bit smaller than MP3 files",
+            "MP3 is more popular than WAV to the users.",
+            "Audio files can’t reproduce every sound of performance.",
+            "An MP3 can store only music",
+            "You can see the songs’ lyrics due to the tag of MP3"
+        ],
+        "answer": [
+            "F",
+            "N",
+            "T",
+            "F",
+            "T"
+        ]
+    },
+    {
+        "name": "Robots and Androids",
+        "requirement": "Read the below text and answer the questions with NO MORE THAN TWO WORDS",
+        "content": "Engineers are trying to make computer think and behave like humans. By combining Artificial Intelligence and engineering techniques, they are building many different types of robot and android. Robots are devices that move and react to sensory input. They usually contain software that runs automatically, without the intervention of a person. Today, robots are used in a wide variety of contexts, from factories to space exploration. We drive cars that have been welded by industrial robots, we buy products that have been made and packaged by robots in as assembly line, we use machines that have been built by them. Our life is affected by robotics in many other ways. Just think about medicine and the health system. Tiny computers are used to monitor the heart rate and blood pressure, micro machines and insect-sized robots help doctors in heart operations and other complicated surgery. In the future, tiny robotic creatures, called Nanorobots, will be injected into the human body and move through the arteries, curing illnesses. Robots are also used in dangerous situations – for example, in repairing nuclear plants, cleaning toxic waste and defusing bombs. Robotics has also been incorporated into the first solar panels, robot maids that do the housework…Some research centers are even building Android-robots that have the shape of capabilities of a human being. In the near future, Androids will be available for sale. They will have access to the Internet, be a guide for the blind, assist elderly people at home, they could even be a 24-hour security guard for your home, sounding the alarm in case of fire and phoning the police if there is a burglary",
+        "question": [
+            "What is included in robots that can operate without human intervention?",
+            "What are Tiny Robotic creatures in the future called?.",
+            "What are used to monitor the heart rate and blood pressure?",
+            "What are being designed with the same capabilities as human being?",
+            "Who will Android robots help to lead?"
+        ],
+        "answer": [
+            "software",
+            "nanorobots",
+            "tiny computers",
+            "Androids-robots",
+            "the blind"
+        ]
+    },
+    {
+        "name": "Multimedia magic",
+        "requirement": "Read the below text and answer the questions with NO MORE THAN FOUR WORDS",
+        "content": "Multimedia applications are used in all sorts of fields. For example, museums, banks, and estate agents often have information kiosks that use multimedia; companies produce training programs on optical discs, business people use Microsoft PowerPoint to create slideshows, and teachers use multimedia to make video projects or to teach subjects like art and music. They have all found that moving images and sound can involve viewers emotionally as well as inform them, helping make their message more memorable.\nAs long as your computer has a sound card, you can use it to capture sounds in digital format. Sound cards offer two important capabilities: a built-in stereo synthesizer and a system called MIDI, or music Instrument Digital Interface, which allows electronic musical instruments to communicate with computers. A Digital Audio Wordstation lets you mix and record several tracks of digital audio. You can also listen to music on your PC, or transfer it to a portable MP3 player. Mp3 is short for MPEG audio layer 3, a standard format that compresses audio files. If you want to create your own MP3 files from CDs, you must have a CD ripper, a program that extracts music tracks and saves them on disk as MP3s.\nAudio is becoming a key element of the web. Many radio stations broadcast live over the Internet using streaming audio technology, which lets you listen to audio in a continuous stream while it is being transmitted. The broadcast of an event over the Web, for example a concert, is called a webcast. Be aware that you won’t be able to play audio and video on the Web unless you have a plug-in like RealPlayer or QuickTime\nVideo is another important part of multimedia. Video computing refer to recording, manipulating and storing video in digital format. If you wanted to make a movie on your computer, first you would need to capture images with digital video camera and then transfer them to your computer. Next, you would need a video editing program like iMovie to cut your favourite segments, re-sequence the clips and add transitions and other effects. Finally, you could save your movie on a DVD or post it on websites like Youtube and Google Video.",
+        "question": [
+            "What do businessmen use to make slideshows?",
+            "If you want to record sounds in digital format, what should your computer be equipped?",
+            "What program can extract music tracks and save them on disk as MP3s?",
+            "What do you need if you want to play audio and video on the Web?",
+            "What program is used to add transitions and other effects to the images captured by the digital camera?"
+        ],
+        "answer": [
+            "Microsoft PowerPoint",
+            "a sound card",
+            "a CD ripper",
+            "a plug-in",
+            "a video editing program"
+        ]
+    },
+    {
+        "name": "Database management systems",
+        "requirement": "Read the below text and answer the questions with NO MORE THAN FOUR WORDS",
+        "content": "Databases are used within a medical context for many purposes. For example, they are used to hold patient details so they can be accessed from anywhere within a hospital or network of hospitals. With the recent improvements in image compression techniques, X-rays and scan output can also be held in databases and accessed in the same way. These multi-user databases are managed by a piece of software called a database management system (DBMS). It is this which differentiates a database from an ordinary computer file. Between the physical database itself (i.e the data as actually stored) and the users of the system is the DBMS. All requests for access to data from users – whether people at terminals or other programs running in batch – are handled by the DBMS. One general function of the DBMS is the protection of database users from machine code (in much the same way that COBOL shields programmers from machine code). In other words, the DBMS provides a view of the data that is elevated above the hardware level, and supports user-requests such as “Get the PATIENT record for patient Smith”, written in a higher-level language. The DBMS also determines the amount and type of information that each user can access from a database. For example, a surgeon and a hospital administrator will require different views of a database. When a user wishes to access a database, he makes an access request using a particular data-manipulation language understood by the DBMS. The DBMS receives the request, and checks it for syntax errors. The DBMS then inspects, in turn, the external schema, the conceptual schema, and the mapping between the conceptual schema and the internal schema. It then performs the necessary operations on the stored data. In general, fields may be required from several logical tables of data held in the database. Each logical record occurrence may, in turn require data from more than one physical record held in the actual database. The DBMS must retrieve each of the required physical records and construct the logical view of the data requested by the user. In this way, users are protected from having to know anything about the physical layout of the database, which may be altered, say, for performance reasons, without the users having their logical view of the data structures altered.",
+        "question": [
+            "What do businessmen use to make slideshows?",
+            "If you want to record sounds in digital format, what should your computer be equipped?",
+            "What program can extract music tracks and save them on disk as MP3s?",
+            "What do you need if you want to play audio and video on the Web?",
+            "What program is used to add transitions and other effects to the images captured by the digital camera?"
+        ],
+        "answer": [
+            "image compression",
+            "a DBMS",
+            "CoBol",
+            "make an access request",
+            "check for syntax errors"
+        ]
+    },
+    {
+        "name": "",
+        "requirement": "Read the text and decide if the following sentences are T (True) or F (False)",
+        "content": "This page draws on published advice from expert presenters around the world, which will help to take your presentations from merely ‘good’ to ‘great’.\nBy bringing together advice from a wide range of people, the aim is to cover a whole range of areas.\nWhether you are an experienced presenter, or just starting out, there should be ideas here to help you to improve. First of all, you need to show your passion and connect with your Audience. It’s hard to be relaxed and be yourself when you’re nervous.\nBut time and again, the great presenters say that the most important thing is to connect with your audience, and the best way to do that is to let your passion for the subject shine through. Therefore, be honest with the audience about what is important to you and why it matters. Secondly, focus on your audience’s needs. Your presentation needs to be built around what your audience is going to get out of the presentation. As you prepare the presentation, you always need to bear in mind what the audience needs and wants to know, not what you can tell them. While you’re giving the presentation, you also need to remain focused on your audience’s response, and react to that. You need to make it easy for your audience to understand and respond. Moreover, you should keep it simple by concentrating on your core message.\nWhen planning your presentation, you should always keep in mind the question: What is the key message (or three key points) for my audience to take away? You should be able to communicate that key message very briefly. Some experts recommend a 30-second ‘elevator summary’, others that you can write it on the back of a business card, or say it in no more than 15 words. Whichever rule you choose, the important thing is to keep your core message focused and brief. And if what you are planning to say doesn’t contribute to that core message, don’t say it.",
+        "question": [
+            "The text is about published advice from expert presenters around the world, which helps you make great presentations.",
+            "It’s simple and easy to be relaxed and be yourself when you’re nervous",
+            "It is important for presenters to concentrate on their audience’s needs. ",
+            "When delivering a presentation, it is necessary to make it understandable. ",
+            "Keeping your core message focused and brief is not essential. "
+        ],
+        "answer": [
+            "T",
+            "F",
+            "T",
+            "T",
+            "F"
+        ]
+    },
+    {
+        "name": "",
+        "requirement": "Read the letter and answer questions WITH NO MORE THAN THREE WORDS OR A NUMBER",
+        "content": "Dear Mr Harvey,\nOn 31 May 2013, I purchased a Dell laptop from your store for $199.95 – serial number TXT6789. The machine was advertised as being ‘on sale’. Please find copies of my receipt and the warranty attached.\nI used the laptop for two weeks with no problems. On 15 June 2013 the laptop got overheating. I checked the user manual and followed all the steps listed in the trouble-shooting guide, but nothing helped. The computer appears to be faulty and is now unfit for its purpose – that is, it no longer works.\nI returned to your store with the laptop on 17 June 2013 and asked Greg, your sales representative, if he could repair the machine, or replace it with a new item.Greg inspected the laptop and found it was irreparable. As it was a discontinued model and your store no longer had any in stock, Greg explained that I could upgrade to the Deluxe version for an extra $50. I stated that I did not want to pay any extra, and that I wanted the laptop replaced with a computer of equal value, or my money refunded. Greg advised that he could not offer me anything, as the laptop was on sale and your store does not offer refunds on sale items.\nI am within my rights to request a refund for a faulty product. I would like to return the laptop to your store for a full refund of the purchase price. I would appreciate this matter being resolved within the next 10 business days.\nIf I do not hear from you within 10 business days, I will forward my complaint to Consumer Affairs Victoria for further advice.Please contact me by telephone or email (details provided above) at any time to discuss this letter.\nYours sincerely,\nRobert J Murphy",
+        "question": [
+            "What is the serial number of Robert’s laptop? ",
+            "What problem did Robert’s laptop have?",
+            "What diagnosis did Greg give to the laptop?",
+            "What did Robert want to get?",
+            "What organization will he send his complaint to if his situation is not dealt with in the next 10 business days?"
+        ],
+        "answer": [
+            "TXT6789",
+            "got overheating",
+            "it was irreparable",
+            "a refund",
+            "Consumer Affairs Victoria"
+        ]
+    },
+    {
+        "name": "",
+        "requirement": "Read the following letter and decide if the statements are True or False. Write T for True and F for False",
+        "content": "Dear Sir or Madam,\nI purchased two identical Dell Inspiron 2-in-1 laptop computers from Best Buy. The computers were then carefully transported to and used in the Philippines. The first computer performed well and continues to do so, but the second began overheating and shutting down a few weeks after purchased.\nThe malfunctioning computer was taken to an authorized Dell repair center in the Philippines. The technician diagnosed the overheating problem as a factory defect! But for some reason, the technician would only fix the computer when granted permission to do so from Dell warranty services.\nDell customer support service instructed transferring ownership to the user in the Philippines, and from that point an authorized Dell technician can then affect repairs. But the transfer of ownership could not even be initiated. Dell’s online service declined the transfer.\nI contacted Dell customer support service for further advisement, and was told the transfer of ownership could not be done because the computer belongs to Best Buy USA, for that reason, the computer must be sent to Huston, Texas for repair and service.I managed to get the computer back into the United States, and from that point sent the computer to Dell’s service center in Huston, Texas, expecting the repair of a defective computer. I responded back. I told them: I will not pay for repairing damages. The overheating problem comes from a defective computer, not from a customer mishap.Now the factory defect has been nullified and replaced by liquid spillage. The computer’s problem has transitioned from being Dell’s fault to being the customer’s fault.\nI strongly believe Dell has taken advantage of me by depriving me of the computer’s warranty. Dell, in comparison, has a lot to gain from denying me the manufacturer warranty and avoiding obligations established by applicable Lemon Laws, such as the Song-Beverly Consumer Warranty Act that protects consumers from being stuck with a defective product.\nI contend Dell sold me a defective computer, and has deviously attempted to put the blame on me.\nPlease rescind the purchase of the computer, and provide a refund or facilitate the exchange for another computer.\nYours faithfully,\nJack",
+        "question": [
+            "Jack purchased two Dell laptops at Dell computer shop.",
+            "One of these laptops got overheating and shut down suddenly after purchasing",
+            "The online service of Dell accepted the transfer of ownership to the customers",
+            "The computer company showed that the problem was caused by the customer’s mishap, not from their product",
+            "The customer asked the company to pay back money or replace a new laptop"
+        ],
+        "answer": [
+            "F",
+            "T",
+            "F",
+            "T",
+            "T"
+        ]
+    }
+]
