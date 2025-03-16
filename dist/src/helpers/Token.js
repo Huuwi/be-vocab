@@ -7,7 +7,7 @@ exports.generateToken = generateToken;
 exports.verifyToken = verifyToken;
 const crypto_1 = __importDefault(require("crypto"));
 const base64url_1 = __importDefault(require("base64url"));
-function generateToken(data, secrectKey = "nguyenhuuduc", options = { expiresIn: 99999999 }) {
+function generateToken(data, secrectKey = process.env.TOKEN_SECRECT_KEY || "nguyenhuuduc", options = { expiresIn: 99999999 }) {
     data.timeExpried = Date.now() + Number(options.expiresIn);
     let payload = (0, base64url_1.default)(JSON.stringify(data));
     let signature = (0, base64url_1.default)(payload + secrectKey);
@@ -15,7 +15,7 @@ function generateToken(data, secrectKey = "nguyenhuuduc", options = { expiresIn:
     signature = hashFun.update(signature).digest('hex');
     return payload + "." + signature;
 }
-function verifyToken(token, secrectKey = "nguyenhuuduc") {
+function verifyToken(token, secrectKey = process.env.TOKEN_SECRECT_KEY || "nguyenhuuduc") {
     let [payload, signature] = token.split('.');
     let data = JSON.parse(base64url_1.default.decode(payload));
     if (data.timeExpried < Date.now()) {

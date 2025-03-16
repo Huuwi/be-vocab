@@ -67,11 +67,11 @@ const main = async () => {
 
     //-----------------------------------------------------------------------------------------------------------------------------------------
 
-    // await connection.executeQuery(`create table User(
+    // await connection.executeQuery(`create table Users(
     //         userId int primary key not null AUTO_INCREMENT,
     //         username varchar(30),
-    //         password varchar(30),
-    //         role bit default 0
+    //         password varchar(100),
+    //         role boolean default 0
     //     )`).then((res) => {
     //     console.log(res);
     // }).catch((e) => {
@@ -174,7 +174,7 @@ const main = async () => {
     //--------------------------------------------------------------------------------------------------------------------
 
 
-    // await connection.executeQuery(`drop table QA`).then((res) => {
+    // await connection.executeQuery(`drop table Users`).then((res) => {
     //     console.log(res);
     // }).catch((e) => {
     //     console.log(e);
@@ -189,9 +189,9 @@ const main = async () => {
     //         })
     // }
 
-    // await connection.executeQuery(`select * from QA`).then((res) => {
-    //     fs.writeFileSync("./test.json", JSON.stringify(res))
-    // })
+    await connection.executeQuery(`select * from Word`).then((res) => {
+        fs.writeFileSync("./test.json", JSON.stringify(res))
+    })
 
     // for (let i = 0; i < rs.length; i++) {
     // await connection.executeQuery(`insert into Reading (readingId , content , name, requirement) values (${i + 1} , '${rs[i].content}' , '${rs[i].name}' , '${rs[i].requirement}')`)

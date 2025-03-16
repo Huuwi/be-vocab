@@ -8,8 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = require("./connection");
+const fs_1 = __importDefault(require("fs"));
 // let r = fs.readFileSync("./r.json", "utf-8")
 // let rs: rW[] = JSON.parse(r)
 // console.log(rs);
@@ -33,11 +37,11 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     // }
     // fs.writeFileSync("../../newdata.json", JSON.stringify(res))
     //-----------------------------------------------------------------------------------------------------------------------------------------
-    // await connection.executeQuery(`create table User(
+    // await connection.executeQuery(`create table Users(
     //         userId int primary key not null AUTO_INCREMENT,
     //         username varchar(30),
-    //         password varchar(30),
-    //         role bit default 0
+    //         password varchar(100),
+    //         role boolean default 0
     //     )`).then((res) => {
     //     console.log(res);
     // }).catch((e) => {
@@ -123,7 +127,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     //     console.log(e);
     // })
     //--------------------------------------------------------------------------------------------------------------------
-    // await connection.executeQuery(`drop table QA`).then((res) => {
+    // await connection.executeQuery(`drop table Users`).then((res) => {
     //     console.log(res);
     // }).catch((e) => {
     //     console.log(e);
@@ -136,9 +140,9 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     //             console.log(e);
     //         })
     // }
-    // await connection.executeQuery(`select * from QA`).then((res) => {
-    //     fs.writeFileSync("./test.json", JSON.stringify(res))
-    // })
+    yield connection.executeQuery(`select * from Word`).then((res) => {
+        fs_1.default.writeFileSync("./test.json", JSON.stringify(res));
+    });
     // for (let i = 0; i < rs.length; i++) {
     // await connection.executeQuery(`insert into Reading (readingId , content , name, requirement) values (${i + 1} , '${rs[i].content}' , '${rs[i].name}' , '${rs[i].requirement}')`)
     //     .then((res) => {

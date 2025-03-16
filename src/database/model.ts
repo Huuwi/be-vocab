@@ -1,7 +1,7 @@
 
 //----------------------------------------interface model of database --------------------------------------------
 
-interface User {
+interface Users {
     userId: number;
     username: string;
     password: string;

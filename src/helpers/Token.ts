@@ -2,7 +2,7 @@ import crypto from "crypto"
 
 import base64url from "base64url"
 
-function generateToken(data: any, secrectKey: string = "nguyenhuuduc", options: any = { expiresIn: 99999999 }): any {
+function generateToken(data: any, secrectKey: string = process.env.TOKEN_SECRECT_KEY || "nguyenhuuduc", options: any = { expiresIn: 99999999 }): any {
     data.timeExpried = Date.now() + Number(options.expiresIn)
     let payload = base64url(JSON.stringify(data))
     let signature = base64url(payload + secrectKey)
@@ -11,7 +11,7 @@ function generateToken(data: any, secrectKey: string = "nguyenhuuduc", options: 
     return payload + "." + signature
 }
 
-function verifyToken(token: string, secrectKey: string = "nguyenhuuduc") {
+function verifyToken(token: string, secrectKey: string = process.env.TOKEN_SECRECT_KEY || "nguyenhuuduc") {
     let [payload, signature] = token.split('.')
     let data = JSON.parse(base64url.decode(payload))
 
