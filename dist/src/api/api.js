@@ -28,4 +28,11 @@ api.post("/register", (req, res) => { authController_1.default.register(req, res
 api.post("/login", (req, res) => { authController_1.default.login(req, res); });
 //auth api
 api.post("/auth/getAllWords", userController_1.default.getAllWords);
+api.post("/auth/getWordById", userController_1.default.getWordById);
+api.post("/auth/getRandomWord", userController_1.default.getRandomWord);
+api.post("/auth/addWordToFavorite", userController_1.default.addWordToFavorite);
+api.post("/auth/getFavorite", userController_1.default.getFavorite);
+api.post("/auth/addWordMyWord", userController_1.default.addWordMyWord);
+api.post("/auth/getMyWord", userController_1.default.getMyWord);
+//admin api
 exports.default = api;
