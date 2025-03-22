@@ -38,4 +38,8 @@ function verifyToken(token: string, secrectKey: string = process.env.TOKEN_SECRE
     }
 }
 
-export { generateToken, verifyToken }
+function sql_might_has_injection(value: string): boolean {
+    return /['"`;\\]/.test(value);
+}
+
+export { generateToken, verifyToken, sql_might_has_injection }
