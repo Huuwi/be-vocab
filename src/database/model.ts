@@ -59,7 +59,16 @@ interface QA {
 
 
 
-
+export {
+    Users,
+    Word,
+    MyWord,
+    Favorite,
+    Bag,
+    BagWord,
+    Reading,
+    QA,
+}
 
 
 

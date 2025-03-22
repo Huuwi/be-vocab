@@ -1,42 +1,40 @@
 import { Response, Request } from "express"
 import { createHash } from "crypto"
-import { generateToken } from "@helpers/Token"
+import { generateToken, sql_might_has_injection } from "@helpers/Token"
+import { Users } from "@database/model"
 
 async function register(req: Request, res: Response) {
     try {
 
         let { username, password, repassword } = req.body
 
-        if (!username || !password || !repassword) {
+        if (username === undefined || password === undefined || repassword === undefined) {
             return res.status(400).json({
                 message: "missing data!"
             })
         }
 
-        if (repassword != password) {
+        if (repassword !== password) {
             return res.status(400).json({
                 message: "repassword not equal password"
             })
         }
 
-        let invalidChars = "`'\""
-        for (let c of invalidChars) {
-            if (username.includes(c) || password.includes(c)) {
-                return res.status(400).json({
-                    message: "can't include invalid character"
-                })
-            }
+        if (sql_might_has_injection(username) || sql_might_has_injection(password)) {
+            return res.status(400).json({
+                message: 'Password or Username might be invalid',
+            })
         }
 
-        let userFound = await connection.executeQuery(`select * from Users where username = '${username}' `)
+        let userFound = await globalThis.connection.executeQuery<Array<Users>>(`select * from Users where username = '${username}' `)
             .then((r) => {
-                return r[0]
+                return r[0];
             })
             .catch((e) => {
                 throw new Error(e)
-            })
+            });
 
-        if (userFound) {
+        if (userFound !== undefined) {
             return res.status(400).json({
                 message: "account exsited!"
             })
@@ -66,31 +64,29 @@ async function login(req: Request, res: Response) {
 
         let { username, password } = req.body
 
-        if (!username || !password) {
+        if (username === undefined || password === undefined) {
             return res.status(400).json({
                 message: "missing data!"
             })
         }
 
-        let invalidChars = "`'\""
-        for (let c of invalidChars) {
-            if (username.includes(c) || password.includes(c)) {
-                return res.status(400).json({
-                    message: "can't include invalid character"
-                })
-            }
+        if (sql_might_has_injection(username) || sql_might_has_injection(password)) {
+            return res.status(400).json({
+                message: 'Password or Username might be invalid',
+            })
         }
+
         let hashPass = createHash('sha256').update('bacon').digest('base64');
 
-        let userFound = await connection.executeQuery(`select * from Users where username = '${username}' and password = '${hashPass}' `)
+        let userFound = await connection.executeQuery<Array<Users>>(`select * from Users where username = '${username}' and password = '${hashPass}' `)
             .then((r) => {
                 return r[0]
             })
             .catch((e) => {
                 throw new Error(e)
-            })
+            });
 
-        if (!userFound) {
+        if (userFound === undefined) {
             return res.status(400).json({
                 message: "username or account incorrect"
             })

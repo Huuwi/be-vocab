@@ -1,23 +1,7 @@
+import { CustomRequest } from "@database/connection";
+import { Bag, Word } from "@database/model";
 import { Request, Response } from "express";
 
-interface Word {
-    wordId: number;
-    hWrite: string;
-    type: string;
-    synonymous: string;
-    antonym: string
-    definition: string;
-}
-
-interface DecodedAccessToken {
-    userId?: string;
-    role?: boolean;
-    [key: string]: any;
-}
-
-interface CustomRequest extends Request {
-    decodeAccessToken?: DecodedAccessToken;
-}
 
 const getAllWords = async (req: CustomRequest, res: Response) => {
     try {
@@ -52,26 +36,26 @@ const getWordById = async (req: CustomRequest, res: Response) => {
     try {
 
         let userId = req.decodeAccessToken?.userId;
-        let wordId = req.body.wordId
-        if (!userId) {
+        let wordId = (req?.body as unknown as Word | undefined)?.wordId;
+        if (userId === undefined) {
             res.status(400).json({
                 message: "not found token!"
             })
             return
         }
 
-        if (!wordId) {
+        if (wordId === undefined) {
             res.status(400).json({
                 message: "missing data!"
             })
             return
         }
-        let words = await globalThis.connection.executeQuery(`select * from Word where wordId = ${wordId}`)
+        let words = await globalThis.connection.executeQuery<Array<Word>>(`select * from Word where wordId = ${wordId}`)
             .then((r) => {
                 return r[0]
             })
 
-        if (!words) {
+        if (words === undefined) {
             res.status(400).json({
                 message: "not found word!"
             })
@@ -99,18 +83,18 @@ const getRandomWord = async (req: CustomRequest, res: Response) => {
 
         let wordId = Math.floor(Math.random() * 1000)
 
-        if (!userId) {
+        if (userId === undefined) {
             res.status(400).json({
                 message: "not found token!"
             })
             return
         }
-        let words = await globalThis.connection.executeQuery(`select * from Word where wordId = ${wordId}`)
+        let words = await globalThis.connection.executeQuery<Array<Word>>(`select * from Word where wordId = ${wordId}`)
             .then((r) => {
                 return r[0]
             })
 
-        if (!words) {
+        if (words === undefined) {
             res.status(400).json({
                 message: "not found word!"
             })
@@ -134,26 +118,26 @@ const addWordToFavorite = async (req: CustomRequest, res: Response) => {
     try {
 
         let userId = req.decodeAccessToken?.userId;
-        let wordId = req.body.wordId
-        if (!userId) {
+        let wordId = (req?.body as unknown as Word | undefined)?.wordId;
+        if (userId === undefined) {
             res.status(400).json({
                 message: "not found token!"
             })
             return
         }
 
-        if (!wordId) {
+        if (wordId === undefined) {
             res.status(400).json({
                 message: "missing data!"
             })
             return
         }
-        let words = await globalThis.connection.executeQuery(`select * from Word where wordId = ${wordId}`)
+        let words = await globalThis.connection.executeQuery<Array<Word>>(`select * from Word where wordId = ${wordId}`)
             .then((r) => {
                 return r[0]
             })
 
-        if (!words) {
+        if (words === undefined) {
             res.status(400).json({
                 message: "not found word!"
             })
@@ -171,7 +155,7 @@ const addWordToFavorite = async (req: CustomRequest, res: Response) => {
 
 
     } catch (error) {
-        console.log("err when addWordToFavorite : ", error);
+        console.error("err when addWordToFavorite : ", error);
         res.status(500).json({
             message: "have wrong"
         })
@@ -183,7 +167,7 @@ const getFavorite = async (req: CustomRequest, res: Response) => {
     try {
 
         let userId = req.decodeAccessToken?.userId;
-        if (!userId) {
+        if (userId === undefined) {
             res.status(400).json({
                 message: "not found token!"
             })
@@ -206,7 +190,7 @@ const getFavorite = async (req: CustomRequest, res: Response) => {
 
 
     } catch (error) {
-        console.log("err when getFavorite : ", error);
+        console.error("err when getFavorite : ", error);
         res.status(500).json({
             message: "have wrong"
         })
@@ -215,28 +199,27 @@ const getFavorite = async (req: CustomRequest, res: Response) => {
 
 const addWordMyWord = async (req: CustomRequest, res: Response) => {
     try {
-
         let userId = req.decodeAccessToken?.userId;
-        let wordId = req.body.wordId
-        if (!userId) {
+        let wordId = (req?.body as unknown as Word | undefined)?.wordId;
+        if (userId === undefined) {
             res.status(400).json({
                 message: "not found token!"
             })
             return
         }
 
-        if (!wordId) {
+        if (wordId === undefined) {
             res.status(400).json({
                 message: "missing data!"
             })
             return
         }
-        let words = await globalThis.connection.executeQuery(`select * from Word where wordId = ${wordId}`)
+        let words = await globalThis.connection.executeQuery<Array<Word>>(`select * from Word where wordId = ${wordId}`)
             .then((r) => {
                 return r[0]
             })
 
-        if (!words) {
+        if (words === undefined) {
             res.status(400).json({
                 message: "not found word!"
             })
@@ -254,7 +237,7 @@ const addWordMyWord = async (req: CustomRequest, res: Response) => {
 
 
     } catch (error) {
-        console.log("err when addWordMyWord : ", error);
+        console.error("err when addWordMyWord : ", error);
         res.status(500).json({
             message: "have wrong"
         })
@@ -267,7 +250,7 @@ const getMyWord = async (req: CustomRequest, res: Response) => {
     try {
 
         let userId = req.decodeAccessToken?.userId;
-        if (!userId) {
+        if (userId === undefined) {
             res.status(400).json({
                 message: "not found token!"
             })
@@ -290,7 +273,7 @@ const getMyWord = async (req: CustomRequest, res: Response) => {
 
 
     } catch (error) {
-        console.log("err when getMyWord : ", error);
+        console.error("err when getMyWord : ", error);
         res.status(500).json({
             message: "have wrong"
         })
@@ -301,15 +284,15 @@ const addNewBag = async (req: CustomRequest, res: Response) => {
     try {
 
         let userId = req.decodeAccessToken?.userId;
-        let bagName = req.body.bagName
-        if (!userId) {
+        let bagName = (req?.body as unknown as Bag | undefined)?.bagName;
+        if (userId === undefined) {
             res.status(400).json({
                 message: "not found token!"
             })
             return
         }
 
-        if (!bagName) {
+        if (bagName === undefined) {
             res.status(400).json({
                 message: "missing data!"
             })
@@ -339,7 +322,7 @@ const getAllBags = async (req: CustomRequest, res: Response) => {
     try {
 
         let userId = req.decodeAccessToken?.userId;
-        if (!userId) {
+        if (userId === undefined) {
             res.status(400).json({
                 message: "not found token!"
             })

@@ -76,26 +76,29 @@ class Connection {
         }
     }
 
-    async executeQuery(statement: string, placeholders: any[] = []): Promise<any> {
+    async executeQuery<T>(statement: string, placeholders: any[] = []): Promise<T> {
         if (!this.connection) {
             throw new Error("Database connection is not established.");
         }
-        try {
-            const [results] = await this.connection.query(statement, placeholders);
-            console.log("Execute success statement");
-            return results;
-        } catch (error: any) {
-            console.error(
-                "Execute fail statement: ",
-                statement,
-                " placeholders: ",
-                placeholders.join("  "),
-                "error: ",
-                error
-            );
-        }
+        const [results] = await this.connection.query(statement, placeholders);
+        console.log("Execute success statement");
+        return results as T;
     }
 }
 
 
-export { Connection };
+interface DecodedAccessToken {
+    userId?: string;
+    role?: boolean;
+    [key: string]: any;
+}
+
+interface CustomRequest extends Request {
+    decodeAccessToken?: DecodedAccessToken;
+}
+
+export {
+    Connection,
+    DecodedAccessToken,
+    CustomRequest,
+};
