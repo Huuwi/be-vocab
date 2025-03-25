@@ -368,10 +368,10 @@ const getWordOfBagId = async (req: CustomRequest, res: Response) => {
             return
         }
         let words = await globalThis.connection.executeQuery(
-            `SELECT Bag.wordId, Word.hwrite, Word.type, Word.synonymous, Word.antonym, Word.definition 
-             FROM Bag
-             INNER JOIN Word ON Bag.wordId = Word.wordId
-             WHERE Bag.bagId = ?`,
+            `SELECT BagWord.wordId, Word.hwrite, Word.type, Word.synonymous, Word.antonym, Word.definition 
+             FROM BagWord
+             INNER JOIN Word ON BagWord.wordId = Word.wordId
+             WHERE BagWord.bagId = ?`,
             [bagId]
         ).then((r) => {
             return r
@@ -394,6 +394,45 @@ const getWordOfBagId = async (req: CustomRequest, res: Response) => {
 }
 
 
+const addWordToBagId = async (req: CustomRequest, res: Response) => {
+
+    try {
+
+        let userId = req.decodeAccessToken?.userId;
+        let bagId = (req?.body as unknown as Bag | undefined)?.bagId;
+        let wordId = (req?.body as unknown as Word | undefined)?.wordId;
+        if (userId === undefined) {
+            res.status(400).json({
+                message: "not found token!"
+            })
+            return
+        }
+
+        if (bagId === undefined || wordId === undefined) {
+            res.status(400).json({
+                message: "missing data!"
+            })
+            return
+        }
+
+        await globalThis.connection.executeQuery(`insert into BagWord (bagId,wordId) values (${bagId},${wordId})`)
+            .catch((e) => {
+                throw new Error(e)
+            })
+
+        res.status(200).json({
+            message: "ok",
+        })
+
+
+    } catch (error) {
+        console.error("err when addWordToBagId : ", error);
+        res.status(500).json({
+            message: "have wrong"
+        })
+    }
+
+}
 
 
 
@@ -407,7 +446,8 @@ const userController = {
     getMyWord,
     addNewBag,
     getAllBags,
-    getWordOfBagId
+    getWordOfBagId,
+    addWordToBagId
 }
 
 

@@ -37,6 +37,7 @@ api.post("/auth/getMyWord", userController.getMyWord as unknown as express.Reque
 api.post("/auth/addNewBag", userController.addNewBag as unknown as express.RequestHandler)
 api.post("/auth/getAllBags", userController.getAllBags as unknown as express.RequestHandler)
 api.post("/auth/getWordOfBagId", userController.getWordOfBagId as unknown as express.RequestHandler)
+api.post("/auth/addWordToBagId", userController.addWordToBagId as unknown as express.RequestHandler)
 
 
 
