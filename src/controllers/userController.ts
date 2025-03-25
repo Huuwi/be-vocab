@@ -434,6 +434,45 @@ const addWordToBagId = async (req: CustomRequest, res: Response) => {
 
 }
 
+const searchWords = async (req: CustomRequest, res: Response) => {
+
+    try {
+
+        let userId = req.decodeAccessToken?.userId;
+        let word = (req?.body as unknown as Word | undefined)?.hWrite;
+        if (userId === undefined) {
+            res.status(400).json({
+                message: "not found token!"
+            })
+            return
+        }
+
+        if (word === undefined) {
+            res.status(400).json({
+                message: "missing data!"
+            })
+            return
+        }
+        let words = await globalThis.connection.executeQuery<Array<Word>>(`select * from Word where hwrite like '%${word}%'`)
+            .then((r) => {
+                return r
+            })
+
+        res.status(200).json({
+            message: "ok",
+            dataWords: words
+        })
+
+
+    } catch (error) {
+        console.error("err when searchWords : ", error);
+        res.status(500).json({
+            message: "have wrong"
+        })
+    }
+
+}
+
 
 
 const userController = {
@@ -447,7 +486,8 @@ const userController = {
     addNewBag,
     getAllBags,
     getWordOfBagId,
-    addWordToBagId
+    addWordToBagId,
+    searchWords
 }
 
 
