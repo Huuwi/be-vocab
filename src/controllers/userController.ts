@@ -348,6 +348,52 @@ const getAllBags = async (req: CustomRequest, res: Response) => {
 }
 
 
+const getWordOfBagId = async (req: CustomRequest, res: Response) => {
+
+    try {
+
+        let userId = req.decodeAccessToken?.userId;
+        let bagId = (req?.body as unknown as Bag | undefined)?.bagId;
+        if (userId === undefined) {
+            res.status(400).json({
+                message: "not found token!"
+            })
+            return
+        }
+
+        if (bagId === undefined) {
+            res.status(400).json({
+                message: "missing data!"
+            })
+            return
+        }
+        let words = await globalThis.connection.executeQuery(
+            `SELECT Bag.wordId, Word.hwrite, Word.type, Word.synonymous, Word.antonym, Word.definition 
+             FROM Bag
+             INNER JOIN Word ON Bag.wordId = Word.wordId
+             WHERE Bag.bagId = ?`,
+            [bagId]
+        ).then((r) => {
+            return r
+        });
+
+        res.status(200).json({
+            message: "ok",
+            dataWords: words
+        })
+
+
+    } catch (error) {
+        console.error("err when getWordOfBagId : ", error);
+        res.status(500).json({
+            message: "have wrong"
+        })
+    }
+
+
+}
+
+
 
 
 
@@ -360,7 +406,8 @@ const userController = {
     addWordMyWord,
     getMyWord,
     addNewBag,
-    getAllBags
+    getAllBags,
+    getWordOfBagId
 }
 
 
