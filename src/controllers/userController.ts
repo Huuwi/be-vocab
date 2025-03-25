@@ -1,7 +1,15 @@
 import { CustomRequest } from "@database/connection";
-import { Bag, Word } from "@database/model";
+import { Bag, Reading, Word, QA } from "@database/model";
 import { Request, Response } from "express";
 
+interface dataDesReading {
+    readingId: number,
+    content: string,
+    name: string,
+    requirement: string,
+    question: string,
+    answer: string
+}
 
 const getAllWords = async (req: CustomRequest, res: Response) => {
     try {
@@ -473,6 +481,98 @@ const searchWords = async (req: CustomRequest, res: Response) => {
 
 }
 
+const getAllReadings = async (req: CustomRequest, res: Response) => {
+
+    try {
+
+        let userId = req.decodeAccessToken?.userId;
+        if (userId === undefined) {
+            res.status(400).json({
+                message: "not found token!"
+            })
+            return
+        }
+        let readings = await globalThis.connection.executeQuery(`select readingId,name,requirement from Reading`)
+            .then((r) => {
+                return r
+            })
+        res.status(200).json({
+            message: "ok",
+            dataReadings: readings
+        })
+
+
+    } catch (error) {
+        console.log("err when getAllReadings : ", error);
+        res.status(500).json({
+            message: "have wrong"
+        })
+    }
+
+
+}
+
+
+const getDesReadingById = async (req: CustomRequest, res: Response) => {
+
+    try {
+
+        let userId = req.decodeAccessToken?.userId;
+        let readingId = (req?.body as unknown as Reading | undefined)?.readingId;
+        if (userId === undefined) {
+            res.status(400).json({
+                message: "not found token!"
+            })
+            return
+        }
+
+        if (readingId === undefined) {
+            res.status(400).json({
+                message: "missing data!"
+            })
+            return
+        }
+        let readings: dataDesReading[] | dataDesReading = await globalThis.connection.executeQuery<dataDesReading>(
+            `SELECT Reading.readingId, Reading.content, Reading.name, Reading.requirement, QA.question, QA.answer
+             FROM Reading
+             INNER JOIN QA ON Reading.readingId = QA.readingId
+             WHERE Reading.readingId = ?`,
+            [readingId]
+        )
+        // console.log(readings);
+
+        if (Array.isArray(readings) && readings.length > 2) {
+            res.status(200).json({
+                message: "ok",
+                dataReadings: {
+                    name: readings[0].name,
+                    content: readings[0].content,
+                    requirement: readings[0].requirement,
+                    questions: readings.map(e => e.question),
+                    answers: readings.map(e => e.answer)
+                }
+            })
+            return
+
+        }
+
+        res.status(200).json({
+            message: "ok",
+            dataReadings: readings
+        })
+
+
+    } catch (error) {
+        console.error("err when getDesReadingById : ", error);
+        res.status(500).json({
+            message: "have wrong"
+        })
+    }
+
+
+}
+
+
 
 
 const userController = {
@@ -487,7 +587,9 @@ const userController = {
     getAllBags,
     getWordOfBagId,
     addWordToBagId,
-    searchWords
+    searchWords,
+    getAllReadings,
+    getDesReadingById
 }
 
 

@@ -79,14 +79,23 @@ class Connection {
         }
     }
 
-    async executeQuery<T>(statement: string, placeholders: any[] = []): Promise<T> {
+    async executeQuery<T>(
+        statement: string,
+        placeholders: any[] = [],
+        singleResult: boolean = false
+    ): Promise<T | T[]> {
         if (!this.connection) {
             throw new Error("Database connection is not established.");
         }
         const [results] = await this.connection.query(statement, placeholders);
         console.log("Execute success statement");
-        return results as T;
+
+        if (singleResult) {
+            return (results as T[])[0] as T;
+        }
+        return results as T[];
     }
+
 }
 
 

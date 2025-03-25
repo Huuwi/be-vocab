@@ -45,7 +45,7 @@ interface BagWord {
 interface Reading {
     readingId: number;
     content: string;
-    readingName: string;
+    name: string;
     requirement: string;
 }
 

@@ -92,13 +92,15 @@ async function login(req: Request, res: Response) {
             })
         }
 
-        res.cookie("at", generateToken({ userId: userFound.userId }))
+        const user = Array.isArray(userFound) ? userFound[0] as Users : userFound as Users;
+
+        res.cookie("at", generateToken({ userId: user.userId }));
 
         return res.status(200).json({
             message: "ok",
             userData: {
-                userId: userFound.userId,
-                role: userFound.role
+                userId: user.userId,
+                role: user.role
             }
         })
 

@@ -39,6 +39,8 @@ api.post("/auth/getAllBags", userController.getAllBags as unknown as express.Req
 api.post("/auth/getWordOfBagId", userController.getWordOfBagId as unknown as express.RequestHandler)
 api.post("/auth/addWordToBagId", userController.addWordToBagId as unknown as express.RequestHandler)
 api.post("/auth/searchWords", userController.searchWords as unknown as express.RequestHandler)
+api.post("/auth/getAllReadings", userController.getAllReadings as unknown as express.RequestHandler)
+api.post("/auth/getDesReadingById", userController.getDesReadingById as unknown as express.RequestHandler)
 
 
 
