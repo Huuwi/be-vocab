@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "nodenext",
+    "target": "ES2016",
+    "module": "Node16",
     "baseUrl": "./",
     "paths": {
       "@services/*": [

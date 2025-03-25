@@ -1,9 +1,12 @@
 import mysql2, { Connection as MySqlConnection } from "mysql2/promise";
 
 import dotenv from "dotenv";
-// dotenv.config({ path: "./.env" })
+dotenv.config({ path: "./.env" })
 
-dotenv.config({ path: "E:/BE-Khanh/.env" })
+// dotenv.config({ path: "E:/BE-Khanh/.env" })
+
+// console.log(process.env);
+
 
 
 type DatabaseConfig = {

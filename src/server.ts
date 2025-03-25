@@ -4,11 +4,12 @@ import dotenv from "dotenv";
 import { Connection } from "./database/connection"
 import api from "./api/api";
 import { configApp } from "./configServer";
+dotenv.config();
 
 globalThis.connection = new Connection();
 globalThis.connection.connect();
 
-dotenv.config();
+
 
 const app: Express = express();
 const port = process.env.PORT || 8000;
