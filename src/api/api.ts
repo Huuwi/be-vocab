@@ -27,15 +27,15 @@ api.post("/register", (req, res) => { authController.register(req, res) })
 api.post("/login", (req, res) => { authController.login(req, res) })
 
 //auth api
-api.post("/auth/getAllWords", userController.getAllWords as express.RequestHandler)
-api.post("/auth/getWordById", userController.getWordById as express.RequestHandler)
-api.post("/auth/getRandomWord", userController.getRandomWord as express.RequestHandler)
-api.post("/auth/addWordToFavorite", userController.addWordToFavorite as express.RequestHandler)
-api.post("/auth/getFavorite", userController.getFavorite as express.RequestHandler)
-api.post("/auth/addWordMyWord", userController.addWordMyWord as express.RequestHandler)
-api.post("/auth/getMyWord", userController.getMyWord as express.RequestHandler)
-api.post("/auth/addNewBag", userController.addNewBag as express.RequestHandler)
-api.post("/auth/getAllBags", userController.getAllBags as express.RequestHandler)
+api.post("/auth/getAllWords", userController.getAllWords as unknown as express.RequestHandler)
+api.post("/auth/getWordById", userController.getWordById as unknown as express.RequestHandler)
+api.post("/auth/getRandomWord", userController.getRandomWord as unknown as express.RequestHandler)
+api.post("/auth/addWordToFavorite", userController.addWordToFavorite as unknown as express.RequestHandler)
+api.post("/auth/getFavorite", userController.getFavorite as unknown as express.RequestHandler)
+api.post("/auth/addWordMyWord", userController.addWordMyWord as unknown as express.RequestHandler)
+api.post("/auth/getMyWord", userController.getMyWord as unknown as express.RequestHandler)
+api.post("/auth/addNewBag", userController.addNewBag as unknown as express.RequestHandler)
+api.post("/auth/getAllBags", userController.getAllBags as unknown as express.RequestHandler)
 
 
 
