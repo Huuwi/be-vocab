@@ -2,6 +2,8 @@ import express, { Express, Request, Response, Router } from "express"
 import authController from "@controllers/authController"
 import middleWare from "src/middleware/middleware"
 import userController from "@controllers/userController"
+import adminController from "@controllers/adminController"
+
 
 const api: Router = express.Router()
 
@@ -45,6 +47,10 @@ api.post("/auth/getDesReadingById", userController.getDesReadingById as unknown 
 
 
 //admin api
+api.post("/admin/addNewWord", adminController.addNewWord as unknown as express.RequestHandler)
+api.post("/admin/deleteWord", adminController.deleteWord as unknown as express.RequestHandler)
+api.post("/admin/updateWord", adminController.updateWord as unknown as express.RequestHandler)
+
 
 
 export default api
